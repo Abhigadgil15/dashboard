@@ -16,6 +16,7 @@ import flask
 server = flask.Flask(__name__, template_folder='assets')
 
 app = dash.Dash(external_stylesheets=[dbc.themes.GRID, dbc.themes.BOOTSTRAP],)
+server = app.server
 
 env = ["Ozone", "CO2", "Death from air pollution"]
 with open('data/Worldmap shapes/custom.geo.json') as f:
