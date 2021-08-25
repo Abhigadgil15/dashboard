@@ -11,6 +11,9 @@ import numpy as np
 import plotly.offline as py
 import pycountry
 import pycountry_convert as pc
+import flask
+
+server = flask.Flask(__name__, template_folder='assets')
 
 app = dash.Dash(external_stylesheets=[dbc.themes.GRID, dbc.themes.BOOTSTRAP],)
 
