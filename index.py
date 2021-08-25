@@ -341,7 +341,7 @@ app.layout = html.Div(
                     dbc.Button("About Us", id="open", n_clicks=0, style={"margin-right":"25px","margin-top":"25px",}, color="primary"),
                     dbc.Modal([
                         dbc.ModalHeader("About Us"),
-                        dbc.ModalBody("We are a community of 2 ppl"),
+                        dbc.ModalBody([html.Div("Name- Abhinav Gadgil  Reg No-19MIM10067"),html.Div("Name- Rahul Mandviya Reg No-19MIM10062"),]),
                     dbc.ModalFooter(
                         dbc.Button("Close", id="close", className="ml-auto", n_clicks=0,color="primary")
                             ),
