@@ -19,11 +19,11 @@ app = dash.Dash(external_stylesheets=[dbc.themes.GRID, dbc.themes.BOOTSTRAP],)
 server = app.server
 
 env = ["Ozone", "CO2", "Death from air pollution"]
-with open('data/Worldmap shapes/custom.geo.json') as f:
+with open('assets/data/Worldmap shapes/custom.geo.json') as f:
   geojson = json.load(f)
 
-df1 = pd.read_csv("data/data_situation2.csv")
-df2 = pd.read_csv("data\Sea_Level_GMSL.csv")
+df1 = pd.read_csv("assets/data/data_situation2.csv")
+df2 = pd.read_csv("assets/data/Sea_Level_GMSL.csv")
 
 
 def sea_level():
@@ -95,7 +95,7 @@ def sea_level():
 
 
 def temperature_page1():
-    dataset = pd.read_csv('data/Situation_temperature-anomaly.csv')
+    dataset = pd.read_csv('assets/data/Situation_temperature-anomaly.csv')
     dataset = dataset[(dataset.Entity == "Global")]
     dataset.columns = ['Entity','Year', 'Median', 'Upper_bound', 'Lower_bound']
     month = dataset['Year']
@@ -117,7 +117,7 @@ def temperature_page1():
 
 
 ###CO2 emissions plot
-CO2_Emi = pd.read_csv("data\CO2_Emissions.csv")
+CO2_Emi = pd.read_csv("assets/data/CO2_Emissions.csv")
 def findCountryAlpha2 (country_name):
     try:
         return pycountry.countries.get(name=country_name).alpha_2
@@ -175,8 +175,8 @@ def emissions():
 
 ###Net-Tracker
 def get_NetZeroTargetWM():
-        df_nzc = pd.read_csv('data/countries.csv')
-        with open('data/Worldmap shapes/custom.geo.json') as f:
+        df_nzc = pd.read_csv('assets/data/countries.csv')
+        with open('assets/data/Worldmap shapes/custom.geo.json') as f:
               geojson = json.load(f)
         fig_nzc = px.choropleth_mapbox(df_nzc, geojson=geojson, locations="Abbreviation",
                     color='Target Status',
@@ -195,7 +195,7 @@ def get_NetZeroTargetWM():
 
 # Damage dealt to EU economy PLot
 def get_dmgEU():
-        df_eea = pd.read_csv('data/natural-disasters-events-3.csv', sep=',')
+        df_eea = pd.read_csv('assets/data/natural-disasters-events-3.csv', sep=',')
         df_eea2 = df_eea.loc[df_eea['Chart'] == 'EU-28']
         fig = go.Figure(layout=go.Layout(
         title=go.layout.Title(text="Damage dealt to the EU economy by natural disasters in millions")
@@ -236,8 +236,8 @@ def get_dmgEU():
         return fig
 ###GDP plot
 def get_dropGDP():
-    df1 = pd.read_csv('data/C_Percentage change in regional GDP.csv', sep=';')
-    df1_ols = pd.read_excel('data/C_Percentage change in regional GDP_ols.xlsx')
+    df1 = pd.read_csv('assets/data/C_Percentage change in regional GDP.csv', sep=';')
+    df1_ols = pd.read_excel('assets/data/C_Percentage change in regional GDP_ols.xlsx')
     df1 = pd.melt(df1, id_vars=['Date'],value_vars=['OECD Europe', 'OECD Pacific', 'OECD America', 'Latin America',
        'Rest of Europe and Asia', 'Middle East and North Africa',
        'South and South-East Asia', 'Sub-Saharan Africa'])
@@ -267,7 +267,7 @@ def get_dropGDP():
 
 # Funding PLot
 def get_fundingGraph():
-    dataset_pledges = pd.read_excel('data/Governmental_efforts_climate funding_Pledges.xlsx')
+    dataset_pledges = pd.read_excel('assets/data/Governmental_efforts_climate funding_Pledges.xlsx')
     dataset_pledges.columns = ['Fund','Fund Type', 'Fund Focus', 'Contributor', 'Country', 'Country Income Level','Region', 'Pledged (USD million current)', 'Deposited (USD million current)','test','test1']
     dataset_pledges=dataset_pledges.groupby(by=["Country"])['Pledged (USD million current)', 'Deposited (USD million current)'].sum().reset_index()
     dataset_pledges = dataset_pledges.nlargest(15, 'Pledged (USD million current)')
@@ -293,7 +293,7 @@ def get_fundingGraph():
 
 
 def renewable():
-    dataset = pd.read_csv('data/Situation_renewable-share-energy.csv')
+    dataset = pd.read_csv('assets/data/Situation_renewable-share-energy.csv')
     dataset.columns = ['Entity','Code','Year', 'Renewables']
     dataset["Indice"] = 0
     
