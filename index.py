@@ -23,7 +23,7 @@ with open('assets/data/Worldmap shapes/custom.geo.json') as f:
   geojson = json.load(f)
 
 df1 = pd.read_csv("assets/data/data_situation2.csv")
-df2 = pd.read_csv("assets/data/Sea_Level_GMSL.csv")
+df2 = pd.read_csv("Sea_Level_GMSL.csv")
 
 
 def sea_level():
